@@ -13,7 +13,8 @@ PMatrix2D C, Ci;
 
 void setup() {
   // default renderer has gaps between adjacent triangles
-  size(screen.width, screen.height, P2D);
+  // size(screen.width, screen.height);
+  size(957, 543, P2D);
 
   noLoop();
 
@@ -70,7 +71,7 @@ void mousePressed() {
   // follow 0 <= u < cols, u/2 <= v < u/2+rows
   // index insures position in states[] matches 2*rows*i + 2*j,
   // where 0 <= i < cols, 0 <= j < cols to remove empty space in array
-  int index = 2*rows*c[0] + 2*c[1] - c[0]/2*2 + c[2];
+  int index = 2*rows*c[0] + 2*c[1] - int(c[0]/2)*2 + c[2];
   // cycles 0, 1, 2, 3, 0, 1, ...
   states[index] = (states[index] < 3) ? states[index] + 1 : 0;
   redraw();
@@ -81,7 +82,7 @@ void draw() {
   for (int i = 0; i < cols; i++)
     for (int j = 0; j < rows; j++) {
       int index = 2*rows*i + 2*j;
-      drawTri(i, j + i/2, 0, states[index]);
-      drawTri(i, j + i/2, 1, states[index + 1]);
+      drawTri(i, j + int(i/2), 0, states[index]);
+      drawTri(i, j + int(i/2), 1, states[index + 1]);
     }
 }
