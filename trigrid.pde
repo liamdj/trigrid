@@ -49,6 +49,7 @@ int[] toTriGrid(int x, int y) {
 // Takes the coordinate in the C basis, direction and state of
 // a triangle and draws in the XY plane
 void drawTri(int u, int v, int w, int state) {
+println(u, v, w);
   beginShape();
   fill(colors[state]);
   if (state == 0) {
