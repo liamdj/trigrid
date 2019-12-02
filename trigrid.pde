@@ -1,3 +1,6 @@
+// trigrid.pde
+// Liam Johansson
+
 color[] colors = {
   #1a2d4f, 
   #9d3490, 
@@ -13,7 +16,8 @@ PMatrix2D C, Ci;
 
 void setup() {
   // default renderer has gaps between adjacent triangles
-  size(screen.width, screen.height, P2D);
+  // size(screen.width, screen.height);
+  size(957, 543, P2D);
 
   noLoop();
 
@@ -40,6 +44,7 @@ int[] toTriGrid(int x, int y) {
   float u = Ci.multX(x, y);
   float v = Ci.multY(x, y);
   int[] coord = { int(u), int(v), 0 };
+  // coord[2] == 0: left-pointing, coord[2] == 1: right-pointing
   if (u - floor(u) > v - floor(v)) {
     coord[2] = 1;
   }
@@ -60,7 +65,11 @@ void drawTri(int u, int v, int w, int state) {
   }
   vertex(C.multX(u, v), C.multY(u, v));
   vertex(C.multX(u+1, v+1), C.multY(u+1, v+1));
-  vertex(C.multX(u+w, v+1-w), C.multY(u+w, v+1-w));
+  if (w == 0) {
+    vertex(C.multX(u, v+1), C.multY(u, v+1));
+  } else {
+    vertex(C.multX(u+1, v), C.multY(u+1, v));
+  }
   endShape(CLOSE);
 }
 
