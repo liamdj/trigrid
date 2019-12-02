@@ -13,8 +13,7 @@ PMatrix2D C, Ci;
 
 void setup() {
   // default renderer has gaps between adjacent triangles
-  // size(screen.width, screen.height);
-  size(957, 543, P2D);
+  size(screen.width, screen.height, P2D);
 
   noLoop();
 
